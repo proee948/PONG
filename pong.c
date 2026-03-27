@@ -1,7 +1,7 @@
 #include <ncurses.h>
 #include <stdlib.h>
 #include <cdk/cdk.h>
-#include <time.h>
+#include <stdbool.h>
 
 	//globals//
 	int up_down = 0;
@@ -10,20 +10,11 @@
 
 	//prototypes//
 	void game(int,int,int,int);
-	void menu(void);
+	int menu(void);
 	//prototypes//
 	
 int main()
 {
-	//setup//
-	initscr();
-	cbreak();				
-	noecho();
-	keypad(stdscr, TRUE);
-	nodelay(stdscr, TRUE);
-	curs_set(0);
-	mousemask(0, NULL);
-	//setup//
 	//vars//
 	int x = 0;
 	int dx = 1;
@@ -31,21 +22,31 @@ int main()
 	int dy = 1;					
 	//vars//
 
-	menu();
-	
-	
-	
+	switch(menu() == 1)
+	{
+		case TRUE: game(x,dx,y,dy); break;
+		case FALSE: endwin(); break; 
+			
+	}	
 }
 
 void game(int x, int dx, int y, int dy)
 {	
 	while (1) 
 	{
-
     	mvaddch(y, x, '+'); 
     	refresh();
 		mvaddch(y, x, ' ');
     	napms(50);
+		//setup//
+		initscr();
+		cbreak();				
+		nodelay(stdscr, TRUE);
+		curs_set(0);
+		mousemask(0, NULL);
+		noecho();
+		//setup//
+		keypad(stdscr,TRUE);
 
     	x += dx;
 		y += dy;
@@ -89,10 +90,7 @@ void game(int x, int dx, int y, int dy)
     	}
 		//first player//
 		//
-		if ( p == KEY_BACKSPACE)
-		{
-			break;
-		}
+	
 		//
 		//second player//
 		refresh();
@@ -123,8 +121,7 @@ void game(int x, int dx, int y, int dy)
 	}
 	endwin();	
 }
-
-void menu()
+int menu()
 {
 	 WINDOW *win = initscr();
 
@@ -152,11 +149,22 @@ void menu()
         FALSE
     );
 
-    activateCDKScroll(menu, 0);
+    int currentchoice = activateCDKScroll(menu, 0);
 
-    destroyCDKScroll(menu);
-    endCDK();
-    endwin();
+
+	if(currentchoice == 0){
+		destroyCDKScroll(menu);
+    	endCDK();
+    	endwin();
+		return 1;
+	}
+	else{
+		destroyCDKScroll(menu);
+    	endCDK();
+    	endwin();
+		return 0;
+	}
+	
 }
 
 
