@@ -6,6 +6,8 @@
 	//globals//
 	int up_down = 0;
 	int down_up = 0;
+	int point_counter1 = 0;
+	int point_counter2 = 0;
 	//globals//
 
 	//prototypes//
@@ -52,27 +54,29 @@ void game(int x, int dx, int y, int dy)
 		y += dy;
 
  		//boundscheck ball//
-    	if (x <= 0 || x >= COLS-1)
-		{
-			dx = -dx;
+
+    	mvprintw(0,10,"left %d",point_counter1); // first player points
+		mvprintw(0,80,"right %d",point_counter2); // second player points
+
+		if (x >= COLS-1){	
+			point_counter1 += 1; // add point to first player
+			x = 0; //reset ball
+			
+		}	
+		if (x < 0){
+			point_counter2 += 1; //add point to second player
+			x = 168; //reset ball 
+			
 		}
-			if (y <= 0 || y >= LINES-1)
+
+			
+		if (y <= 0 || y >= LINES-1)
 		{
 			dy = -dy;
 		}
  		//bounds check ball//
 
 														
-		//first player bounds check//
-		switch(up_down)
-		{
-		case -1: up_down = 30; mvvline(-1,0,' ',10); mvvline(up_down,0,'|', 10);
-		break;
-		case 31: up_down = 0; mvvline(31,0,' ',10); mvvline(up_down,0,'|', 10);
-		break;
-		}
-		//first player bounds check//
-
 		//first player//
     	refresh();
 		int p = getch();
@@ -89,9 +93,17 @@ void game(int x, int dx, int y, int dy)
         mvvline(up_down,0,'|',10); 
     	}
 		//first player//
-		//
-	
-		//
+		
+        //first player bounds check//
+		switch(up_down)
+		{
+		case -1: up_down = 30; mvvline(-1,0,' ',10); mvvline(up_down,0,'|', 10);
+		break;
+		case 31: up_down = 0; mvvline(31,0,' ',10); mvvline(up_down,0,'|', 10);
+		break;
+		}
+		//first player bounds check//
+
 		//second player//
 		refresh();
 		mvvline(down_up,168,'|',10);
@@ -118,6 +130,9 @@ void game(int x, int dx, int y, int dy)
 		case 31: down_up = 0; mvvline(31,168,' ',10);
 		break;
 		}
+		//second player bounds check//
+
+		
 	}
 	endwin();	
 }
