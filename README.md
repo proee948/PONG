@@ -1,2 +1,3 @@
 GOALS
-- point system 
+~~point system~~
+- collision check on players
