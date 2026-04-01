@@ -2,12 +2,15 @@
 #include <stdlib.h>
 #include <cdk/cdk.h>
 #include <stdbool.h>
+#define CENTER_Y LINES / 2
+#define CENTER_X COLS / 2
 
 	//globals//
 	int up_down = 0;
 	int down_up = 0;
 	int point_counter1 = 0;
 	int point_counter2 = 0;
+	int bounds_check_arr1 [10] = {0};
 	//globals//
 
 	//prototypes//
@@ -49,6 +52,7 @@ void game(int x, int dx, int y, int dy)
 		noecho();
 		//setup//
 		keypad(stdscr,TRUE);
+		mvprintw(30,3,"updown:%d AND downup:%d", up_down,down_up); //DEBUG//
 
     	x += dx;
 		y += dy;
@@ -60,20 +64,21 @@ void game(int x, int dx, int y, int dy)
 
 		if (x >= COLS-1){	
 			point_counter1 += 1; // add point to first player
-			x = 0; //reset ball
-			
+			x = CENTER_X; //reset ball x
+			y = CENTER_Y; //same shit y
+			dx = -dx; //reverse ball direction
 		}	
 		if (x < 0){
 			point_counter2 += 1; //add point to second player
-			x = 168; //reset ball 
-			
-		}
-
-			
+			x = CENTER_X; //reset ball 
+			y = CENTER_Y;
+			dx = -dx;
+		}	
 		if (y <= 0 || y >= LINES-1)
 		{
 			dy = -dy;
 		}
+
  		//bounds check ball//
 
 														
@@ -82,16 +87,22 @@ void game(int x, int dx, int y, int dy)
 		int p = getch();
 		if ( p == 'w')
 		{
-        mvvline(up_down,0,' ',10);
-        up_down--;
-        mvvline(up_down,0,'|',10);
+        mvvline(up_down,0,' ',10); //delete previous chars
+        up_down--; 					//decrement position (move up)
+        mvvline(up_down,0,'|',10);	// write char '|'
+
 		}else
     	if(p == 's')
     	{
         mvvline(up_down,0,' ',10);
         up_down++;
-        mvvline(up_down,0,'|',10); 
-    	}
+        mvvline(up_down,0,'|',10);
+		}
+		
+		if (x == 1 && y >= up_down && y < up_down + 9) //first player actual ball collision check
+		{
+			dx = -dx;
+		}
 		//first player//
 		
         //first player bounds check//
@@ -120,6 +131,11 @@ void game(int x, int dx, int y, int dy)
         down_up++;
         mvvline(down_up,168,'|',10);
     	}
+
+		if (x == 167 && y >= down_up && y < down_up + 9) //second player actual ball collision check
+		{
+			dx = -dx;
+		}
 		//second player//
 
 		//second player bounds check//
@@ -181,5 +197,4 @@ int menu()
 	}
 	
 }
-
 
