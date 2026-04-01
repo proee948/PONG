@@ -5,18 +5,16 @@
 #define CENTER_Y LINES / 2
 #define CENTER_X COLS / 2
 
-	//globals//
-	int up_down = 0;
-	int down_up = 0;
-	int point_counter1 = 0;
-	int point_counter2 = 0;
-	int bounds_check_arr1 [10] = {0};
-	//globals//
-
-	//prototypes//
-	void game(int,int,int,int);
-	int menu(void);
-	//prototypes//
+//globals//
+int up_down = 0;
+int down_up = 0;
+int point_counter1 = 0;
+int point_counter2 = 0;
+//globals//
+//prototypes//
+void game(int,int,int,int);
+int menu(void);
+//prototypes//
 	
 int main()
 {
@@ -30,8 +28,7 @@ int main()
 	switch(menu() == 1)
 	{
 		case TRUE: game(x,dx,y,dy); break;
-		case FALSE: endwin(); break; 
-			
+		case FALSE: endwin(); break; 		
 	}	
 }
 
@@ -58,17 +55,17 @@ void game(int x, int dx, int y, int dy)
 		y += dy;
 
  		//boundscheck ball//
-
     	mvprintw(0,10,"left %d",point_counter1); // first player points
 		mvprintw(0,80,"right %d",point_counter2); // second player points
-
-		if (x >= COLS-1){	
+		if (x >= COLS-1)
+		{	
 			point_counter1 += 1; // add point to first player
 			x = CENTER_X; //reset ball x
 			y = CENTER_Y; //same shit y
 			dx = -dx; //reverse ball direction
 		}	
-		if (x < 0){
+		if (x < 0)
+		{
 			point_counter2 += 1; //add point to second player
 			x = CENTER_X; //reset ball 
 			y = CENTER_Y;
@@ -78,10 +75,8 @@ void game(int x, int dx, int y, int dy)
 		{
 			dy = -dy;
 		}
-
  		//bounds check ball//
-
-														
+											
 		//first player//
     	refresh();
 		int p = getch();
