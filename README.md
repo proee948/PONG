@@ -1,3 +1,7 @@
+classic pong game made in C, playable entirely in terminal.
+
+
+
 GOALS
 
 - DIFFICULTY addition to menu that changes ball speed
