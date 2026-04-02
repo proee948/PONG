@@ -1,0 +1,4 @@
+pong
+*.o
+*.so
+*.out
