@@ -4,9 +4,11 @@ classic pong game made in C, playable entirely in terminal.
 Debian/Ubuntu:
 
 `sudo apt install libncurses-dev libcdk5-dev`
+
 Fedora:
 
 `sudo dnf install ncurses-devel cdk-devel`
+
 Build & Run
 
 `make
