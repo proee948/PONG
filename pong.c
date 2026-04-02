@@ -41,7 +41,6 @@ void game(int x, int dx, int y, int dy)
 		mvaddch(y, x, ' ');
     	napms(50);
 		//setup//
-		initscr();
 		cbreak();				
 		nodelay(stdscr, TRUE);
 		curs_set(0);
