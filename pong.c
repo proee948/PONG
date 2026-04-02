@@ -49,7 +49,6 @@ void game(int x, int dx, int y, int dy)
 		noecho();
 		//setup//
 		keypad(stdscr,TRUE);
-		mvprintw(30,3,"updown:%d AND downup:%d", up_down,down_up); //DEBUG//
 
     	x += dx;
 		y += dy;
