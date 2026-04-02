@@ -11,8 +11,11 @@ Fedora:
 
 Build & Run
 
-`make
-./pong`
+`make`
+
+then
+
+`./pong`
 
 Controls
 
