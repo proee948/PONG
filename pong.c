@@ -110,7 +110,7 @@ void game(int x, int dx, int y, int dy,int perma_diff_choice)
 			mvvline(up_down,0,'|',10);
 		}
 		
-		if (x == 1 && y >= up_down && y < up_down + 9)
+		if (x == 2 && y >= up_down && y < up_down + 9)
 		{
 			dx = -dx;
 		}
