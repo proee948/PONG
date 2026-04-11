@@ -42,6 +42,6 @@ make
 ## Roadmap
 
 - [x] Difficulty setting (changes ball speed)
-- [x] Loading screen (ACS ncurses)
+- [x] Loading screen (ASCII)
 - [x] Portability improvements
 - [] SIGWINCH support (terminal resize)
