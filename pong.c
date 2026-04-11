@@ -5,11 +5,13 @@
 #include <stdlib.h> 
 #include <cdk/cdk.h> 
 #include <stdbool.h>
+#include <signal.h>
 
 #define CENTER_Y LINES / 2
 #define CENTER_X COLS / 2
 #define BAR_W 20
 
+	
 	//globals//
 	int up_down = 0;
 	int down_up = 0;
@@ -23,10 +25,12 @@
 	void game(int,int,int,int,int);
 	int menu(void);
 	int difficulty_menu(CDKSCREEN *cdk);
+	void SIGWINCH_HANDLER(int n);
 	//prototypes//
 	
 int main()
 {	
+	signal(SIGWINCH,SIGWINCH_HANDLER);
 	//loading screen//
 	initscr();	
 	draw_loading_screen();
@@ -54,6 +58,7 @@ int main()
 
 void game(int x, int dx, int y, int dy,int perma_diff_choice)
 {	
+	//difficulties//
 	int speed;
 	switch(perma_diff_choice)
 	{
@@ -62,6 +67,7 @@ void game(int x, int dx, int y, int dy,int perma_diff_choice)
 		case 2:	speed = 30; break;	// MASOCHISM
 		case 3:	speed = 1; break;	// YUTA
 	}
+	//difficulties//
 	//setup//
 	cbreak();				
 	nodelay(stdscr, TRUE);
@@ -216,7 +222,7 @@ int difficulty_menu(CDKSCREEN *cdk)
 	return difficulty_choice;
 }
 /////////////////////////////////////////////
-////////////////////////////////////////////
+/////////////////LOADING SCREEN/////////////
 ////////////////////////////////////////////
 
 	static const char *title[] = {
@@ -289,3 +295,11 @@ void draw_loading_screen(void) {
 	refresh();
 	getch();
 }
+void SIGWINCH_HANDLER(int n)
+{ 
+	endwin();
+	endCDK();
+	clear();
+	draw_loading_screen();
+}
+
