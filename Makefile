@@ -1,5 +1,5 @@
 CC     = gcc
-CFLAGS = -02
+CFLAGS = -O2
 LIBS   = -lncurses -lcdk
 TARGET = pong
 SRCS   = pong.c
