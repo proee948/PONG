@@ -8,9 +8,6 @@ OBJS    = $(SRCS:.c=.o)
 $(TARGET): $(OBJS)
 	$(CC) $(OBJS) $(LIBS) -o $(TARGET)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
 clean:
 	rm -f $(OBJS) $(TARGET)
 
