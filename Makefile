@@ -1,16 +1,17 @@
-CC = gcc
-CFLAGS = -Wall -Wextra
-LDFLAGS = -lncurses -lcdk
+CC      = gcc
+CFLAGS  = -Wall -Wextra -O2
+LIBS    = -lncurses -lcdk
+TARGET  = pong
+SRCS    = pong.c pong_loading.c
+OBJS    = $(SRCS:.c=.o)
 
-TARGET = pong
-SRC = pong.c
+$(TARGET): $(OBJS)
+	$(CC) $(OBJS) $(LIBS) -o $(TARGET)
 
-all: $(TARGET)
-
-$(TARGET): $(SRC)
-  $(CC) $(CFLAGS) -o $(TARGET) $(SRC) $(LDFLAGS)
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-  rm -f $(TARGET)
+	rm -f $(OBJS) $(TARGET)
 
-.PHONY: all clean
+.PHONY: clean
