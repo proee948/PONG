@@ -1,37 +1,54 @@
-classic pong game made in C, playable entirely in terminal.
+# PONG
+
+Classic two-player Pong in the terminal, written in C with ncurses.
 
 ## Dependencies
-Debian/Ubuntu:
 
-`sudo apt install libncurses-dev libcdk5-dev`
+- `ncurses`
+- `cdk` (Curses Development Kit — used for the menu)
 
-Fedora:
+Install on Debian/Ubuntu:
+```bash
+sudo apt install libncurses-dev libcdk5-dev
+```
+Install on Arch:
+```bash
+sudo pacman -S ncurses cdk
+```
+Install on macOS (Homebrew):
+```bash
+brew install ncurses cdk
+```
 
-`sudo dnf install ncurses-devel cdk-devel`
+## Build
 
-Build & Run
+```bash
+make
+```
 
-`make`
+## Run
 
-then
+```bash
+./pong
+```
 
-`./pong`
+## Controls
 
-Controls
+| Action | Player 1 | Player 2 |
+|---|---|---|
+| Move up | `W` | `↑` |
+| Move down | `S` | `↓` |
 
-|Player 1|Player 2|
-|--------|--------|
-|W — up  |↑ — up  |
-|S — down|↓ — down|
- 
-GOALS
+## File structure
 
-~~- DIFFICULTY addition to menu that changes ball speed~~
+```
+pong.c            — game loop, menu, collision
+pong_loading.h    — loading screen header
+```
 
-- OPTIONS addition to menu that changes style of window
-  
-- cool loading screen
-  
-~~- portability support~~
+## Roadmap
 
-- SIGWINCH support (screen resizing)
+- [x] Difficulty setting (changes ball speed)
+- [x] Loading screen (ACS ncurses)
+- [x] Portability improvements
+- [] SIGWINCH support (terminal resize)
