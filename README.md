@@ -39,13 +39,6 @@ make
 | Move up | `W` | `↑` |
 | Move down | `S` | `↓` |
 
-## File structure
-
-```
-pong.c            — game loop, menu, collision
-pong_loading.h    — loading screen header
-```
-
 ## Roadmap
 
 - [x] Difficulty setting (changes ball speed)
