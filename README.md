@@ -2,9 +2,6 @@
 
 Classic two-player Pong in the terminal, written in C with ncurses.
 
-## latest issues and bugs to fix:
-- CTRL+C is the only way out
-
 
 ## Dependencies
 
