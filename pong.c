@@ -4,7 +4,6 @@
 #include <stdlib.h> 
 #include <cdk/cdk.h> 
 #include <stdbool.h>
-#include <math.h>
 
 #define CENTER_Y LINES / 2
 #define CENTER_X COLS / 2
