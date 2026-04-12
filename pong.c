@@ -1,11 +1,9 @@
-
 #include <ncurses.h> 
 #include <unistd.h> 
 #include <string.h> 
 #include <stdlib.h> 
 #include <cdk/cdk.h> 
 #include <stdbool.h>
-#include <signal.h>
 
 #define CENTER_Y LINES / 2
 #define CENTER_X COLS / 2
@@ -25,12 +23,10 @@
 	void game(int,int,int,int,int);
 	int menu(void);
 	int difficulty_menu(CDKSCREEN *cdk);
-	void SIGWINCH_HANDLER(int n);
 	//prototypes//
 	
 int main()
 {	
-	signal(SIGWINCH,SIGWINCH_HANDLER);
 	//loading screen//
 	initscr();	
 	draw_loading_screen();
@@ -281,11 +277,13 @@ void draw_loading_screen(void) {
 	mvprintw(y, 2, "> %s [", items[i]);
 	refresh();
 	int bx = 2 + 2 + (int)strlen(items[i]) + 2;
-	for (int b = 0; b < BAR_W; b++) {
-	usleep(12000);
-	mvprintw(y, bx + b, "#");
-	refresh();
-		}
+
+	for (int b = 0; b < BAR_W; b++)
+	{
+		usleep(12000);
+		mvprintw(y, bx + b, "#");
+		refresh();
+	}
 	mvprintw(y, bx + BAR_W, "] 100%%");
 	refresh();
 	}
@@ -295,11 +293,3 @@ void draw_loading_screen(void) {
 	refresh();
 	getch();
 }
-void SIGWINCH_HANDLER(int n)
-{ 
-	endwin();
-	endCDK();
-	clear();
-	draw_loading_screen();
-}
-
