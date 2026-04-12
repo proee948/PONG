@@ -5,6 +5,7 @@
 #include <cdk/cdk.h> 
 #include <stdbool.h>
 
+
 #define CENTER_Y LINES / 2
 #define CENTER_X COLS / 2
 #define BAR_W 20
@@ -133,14 +134,14 @@ void game(int x, int dx, int y, int dy,int perma_diff_choice)
 		refresh();
 		mvvline(down_up, COLS-2, '|', 10);
 
-		if (y < down_up)
+		if (y < down_up && x > COLS/2)
 		{
 			mvvline(down_up, COLS-2, ' ', 10);
 			down_up--;
 			if (down_up < 0) down_up = 30;
 			mvvline(down_up, COLS-2, '|', 10);
 		}
-		else if (y > down_up)
+		else if (y > down_up && x > COLS/2)
 		{
 			mvvline(down_up, COLS-2, ' ', 10);
 			down_up++;
@@ -295,4 +296,3 @@ void draw_loading_screen(void) {
 }
 
 
-}
