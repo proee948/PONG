@@ -4,6 +4,7 @@
 #include <stdlib.h> 
 #include <cdk/cdk.h> 
 #include <stdbool.h>
+#include <math.h>
 
 #define CENTER_Y LINES / 2
 #define CENTER_X COLS / 2
@@ -133,14 +134,14 @@ void game(int x, int dx, int y, int dy,int perma_diff_choice)
 		refresh();
 		mvvline(down_up, COLS-2, '|', 10);
 
-		if (p == KEY_UP)
+		if (y < down_up)
 		{
 			mvvline(down_up, COLS-2, ' ', 10);
 			down_up--;
 			if (down_up < 0) down_up = 30;
 			mvvline(down_up, COLS-2, '|', 10);
 		}
-		else if (p == KEY_DOWN)
+		else if (y > down_up)
 		{
 			mvvline(down_up, COLS-2, ' ', 10);
 			down_up++;
@@ -292,4 +293,7 @@ void draw_loading_screen(void) {
 	mvprintw(y,   2, "Press [ ENTER ] to serve.");
 	refresh();
 	getch();
+}
+
+
 }
