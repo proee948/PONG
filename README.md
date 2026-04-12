@@ -39,10 +39,3 @@ make
 |---|---|---|
 | Move up | `W` | `↑` |
 | Move down | `S` | `↓` |
-
-## Roadmap
-
-- [x] Difficulty setting (changes ball speed)
-- [x] Loading screen (ASCII)
-- [x] Portability improvements
-- [] SIGWINCH support (terminal resize)
