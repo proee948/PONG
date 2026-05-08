@@ -5,7 +5,6 @@
 #include <cdk/cdk.h> 
 #include <stdbool.h>
 
-
 #define CENTER_Y LINES / 2
 #define CENTER_X COLS / 2
 #define BAR_W 20
@@ -247,14 +246,14 @@ int difficulty_menu(CDKSCREEN *cdk)
 	};
 
 void draw_loading_screen(void) {
-	int rows, cols;
-	getmaxyx(stdscr, rows, cols);
+
+	getmaxyx(stdscr, LINES, COLS);
 	clear();
 	curs_set(0);
 	/* title */
 	int y = 1;
 	for (int i = 0; title[i]; i++, y++) {
-	int x = (cols - (int)strlen(title[i])) / 2;
+	int x = (COLS - (int)strlen(title[i])) / 2;
 	mvprintw(y, x < 0 ? 0 : x, "%s", title[i]);
 	}
 	y++;
@@ -267,7 +266,7 @@ void draw_loading_screen(void) {
 	NULL
 	};
 	for (int i = 0; court[i]; i++, y++) {
-	int x = (cols - (int)strlen(court[i])) / 2;
+	int x = (COLS - (int)strlen(court[i])) / 2;
 	mvprintw(y, x < 0 ? 0 : x, "%s", court[i]);
 	}
 	y++;
@@ -294,5 +293,3 @@ void draw_loading_screen(void) {
 	refresh();
 	getch();
 }
-
-
